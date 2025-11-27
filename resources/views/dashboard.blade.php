@@ -680,5 +680,33 @@
             }
         });
     </script>
+    <!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const logoutForm = document.querySelector('form[action="{{ route('logout') }}"]');
+    const logoutButton = logoutForm.querySelector('button[type="submit"]');
+
+    logoutButton.addEventListener('click', function (e) {
+        e.preventDefault(); // cegah submit langsung
+
+        Swal.fire({
+            title: 'Konfirmasi Logout',
+            text: 'Apakah Anda yakin ingin keluar dari aplikasi?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, Logout',
+            cancelButtonText: 'Batal',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                logoutForm.submit();
+            }
+        });
+    });
+});
+</script>
+
 </body>
 </html>
