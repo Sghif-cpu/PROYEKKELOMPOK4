@@ -261,18 +261,6 @@ body {
         <a href="{{ route('dashboard') }}" class="menu-item active">
             <i class="fas fa-home"></i> <span>Beranda</span>
         </a>
-        <a href="#" class="menu-item has-dropdown" onclick="toggleDropdown(event, 'pendaftaranDropdown')">
-            <i class="fas fa-user-plus"></i><span>Pendaftaran</span>
-            <i class="fas fa-chevron-down dropdown-icon"></i>
-        </a>
-        <div class="submenu" id="pendaftaranDropdown">
-            <a href="#" class="submenu-item">Pasien Lama</a>
-            <a href="#" class="submenu-item">Pasien Baru</a>
-            <a href="#" class="submenu-item">List Pendaftaran</a>
-            <a href="#" class="submenu-item">Edit Pendaftaran</a>
-            <a href="#" class="submenu-item">Antrian Online</a>
-        </div>
-
         <a href="#" class="menu-item"><i class="fas fa-users"></i> <span>Pasien</span></a>
         <a href="#" class="menu-item"><i class="fas fa-clinic-medical"></i> <span>Poliklinik</span></a>
         <a href="#" class="menu-item"><i class="fas fa-pills"></i> <span>Farmasi</span></a>

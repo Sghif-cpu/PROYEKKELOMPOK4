@@ -22,44 +22,74 @@ Route::middleware(['auth'])->group(function () {
     
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    
-    // Pendaftaran
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | ROUTE PENDAFTARAN PASIEN
+    |--------------------------------------------------------------------------
+    */
     Route::prefix('pendaftaran')->name('pendaftaran.')->group(function () {
+
+        // Halaman utama pendaftaran
         Route::get('/', function () {
             return view('pendaftaran.index');
         })->name('index');
-        
+
+        // Tambah pasien baru (FORM)
         Route::get('/pasien-baru', [PasienController::class, 'create'])->name('pasien-baru');
+
+        // Pasien lama -> daftar pasien
         Route::get('/pasien-lama', [PasienController::class, 'index'])->name('pasien-lama');
     });
-    
-    // Laboratorium
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | ROUTE LABORATORIUM
+    |--------------------------------------------------------------------------
+    */
     Route::prefix('laboratorium')->name('laboratorium.')->group(function () {
         Route::get('/', [LaboratoriumController::class, 'index'])->name('index');
         Route::get('/data', [LaboratoriumController::class, 'getData'])->name('data');
     });
-    
-    // Kasir
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | ROUTE KASIR
+    |--------------------------------------------------------------------------
+    */
     Route::prefix('kasir')->name('kasir.')->group(function () {
         Route::get('/', [KasirController::class, 'index'])->name('index');
     });
-    
-    // Pasien - ROUTE YANG DIPERBAIKI
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | ROUTE PASIEN (CRUD LENGKAP)
+    |--------------------------------------------------------------------------
+    */
     Route::prefix('pasien')->name('pasien.')->group(function () {
-        // Route untuk daftar pasien
+
+        // Daftar pasien
         Route::get('/', [PasienController::class, 'index'])->name('index');
-        
-        // Route untuk Pasien Baru
+
+        // Create pasien baru
         Route::get('/create', [PasienController::class, 'create'])->name('create');
         Route::post('/', [PasienController::class, 'store'])->name('store');
-        
-        // Route untuk detail, edit, update, delete pasien - INI YANG DITAMBAHKAN
+
+        // Detail pasien
         Route::get('/{id}', [PasienController::class, 'show'])->name('show');
+
+        // Edit pasien
         Route::get('/{id}/edit', [PasienController::class, 'edit'])->name('edit');
         Route::put('/{id}', [PasienController::class, 'update'])->name('update');
+
+        // Hapus pasien
         Route::delete('/{id}', [PasienController::class, 'destroy'])->name('destroy');
-        
-        // Route khusus untuk redirect setelah simpan
+
+        // Pasien lama masuk dari pendaftaran
         Route::get('/lama/{id}', [PasienController::class, 'show'])->name('lama');
     });
 });
